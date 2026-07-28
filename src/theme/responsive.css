@@ -1,0 +1,69 @@
+/* ============================================================
+   Responsive: tablet & phone adaptations of the desktop metaphor
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .startmenu { width: min(400px, 94vw); }
+  .gadgets { display: none; }
+}
+
+/* ---------- Phone (<= 760px): stacked "device" mode ---------- */
+@media (max-width: 760px) {
+  /* Login becomes a single centered column */
+  .login__card {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    width: 94vw;
+    padding: 26px 24px 30px;
+    max-height: 90vh;
+    overflow: auto;
+  }
+  .login__divider { display: none; }
+  .login__brand { order: 2; text-align: center; align-items: center; }
+  .login__user { order: 1; }
+  .login__name { font-size: 28px; }
+  .login__avatar { width: 104px; height: 104px; }
+  .login__footer { font-size: 11px; left: 12px; bottom: 10px; }
+  .login__footer span { display: none; }
+  .login__corner { top: 10px; right: 10px; }
+
+  /* Desktop icons: top grid instead of a tall column */
+  .dicons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 2px;
+    right: 8px;
+    bottom: auto;
+    height: auto;
+    max-height: 60vh;
+  }
+  .dicon { width: 74px; }
+  .dicon__label { font-size: 11px; }
+
+  /* Taskbar: compact, icon-only task buttons */
+  .startbtn { font-size: 15px; padding: 0 16px 3px 12px; }
+  .taskbtn { min-width: 40px; max-width: 44px; padding: 0 8px; }
+  .taskbtn span { display: none; }
+  .tray__clock { padding: 0 4px; font-size: 11.5px; }
+
+  /* Windows fill the screen (positioning handled in Window.tsx) */
+  .win { border-radius: 0; border: none; }
+  .win__resize { display: none; }
+
+  /* App content: a touch more compact */
+  .doc { padding: 20px 16px 28px; }
+  .proj-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 460px) {
+  .proj-grid { grid-template-columns: 1fr; }
+  .startmenu__cols { grid-template-columns: 1fr; }
+  .startmenu__right { border-left: none; border-top: 1px solid #b9cdec; }
+}
+
+/* Landscape phones: keep things usable */
+@media (max-height: 460px) and (max-width: 900px) {
+  .login__card { max-height: 94vh; }
+  .gadgets { display: none; }
+}

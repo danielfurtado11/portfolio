@@ -1,0 +1,95 @@
+/* ============================================================
+   Design tokens — Windows XP "Luna" base with Windows 7 "Aero" glass
+   ============================================================ */
+:root {
+  /* --- XP Luna blues (title bars, selection) --- */
+  --xp-blue-1: #3f8ae0;
+  --xp-blue-2: #2a5fd6;
+  --xp-blue-3: #1c3fb0;
+  --xp-title-hi: #4aa3ff;
+  --xp-selection: #2a6fd6;
+
+  /* --- XP Start / taskbar greens --- */
+  --xp-green-1: #59c34d;
+  --xp-green-2: #3c9f40;
+  --xp-green-3: #2f7d33;
+  --xp-green-hi: #86e07a;
+
+  /* --- Taskbar gradient (blue) --- */
+  --taskbar-1: #3f8ae0;
+  --taskbar-2: #245edb;
+  --taskbar-3: #1941a5;
+  --tray-bg-1: #17a3f0;
+  --tray-bg-2: #0f7fd6;
+
+  /* --- Aero glass --- */
+  --aero-glass: rgba(238, 246, 255, 0.62);
+  --aero-glass-strong: rgba(240, 248, 255, 0.82);
+  --aero-glass-dark: rgba(24, 42, 74, 0.42);
+  --aero-border: rgba(255, 255, 255, 0.55);
+  --aero-border-in: rgba(120, 170, 235, 0.55);
+  --aero-highlight: rgba(255, 255, 255, 0.85);
+  --aero-blur: 18px;
+
+  /* --- Surfaces / windows --- */
+  --win-bg: #f4f8ff;
+  --win-body: #fbfdff;
+  --win-line: #cfe0f5;
+  --win-line-soft: #e6eefb;
+
+  /* --- Text --- */
+  --ink: #10233f;
+  --ink-soft: #4a5e79;
+  --ink-mute: #7c8ba3;
+  --ink-on-blue: #ffffff;
+
+  /* --- Accents --- */
+  --accent: #2a6fd6;
+  --accent-warm: #ff9a3d;
+  --accent-lime: #8dbe3d;
+  --danger: #d64545;
+
+  /* --- Sky / wallpaper (Bliss recreation) --- */
+  --sky-top: #2f7fe4;
+  --sky-mid: #6cb3f2;
+  --sky-low: #bfe3ff;
+  --hill-far: #7fbf57;
+  --hill-mid: #64ad3f;
+  --hill-near: #4e9a34;
+  --hill-shadow: #3c7f28;
+
+  /* --- Radii / shadows / motion --- */
+  --r-win: 8px;
+  --r-sm: 5px;
+  --r-pill: 999px;
+  --sh-win: 0 18px 50px rgba(11, 34, 74, 0.42), 0 3px 10px rgba(11, 34, 74, 0.24);
+  --sh-pop: 0 12px 30px rgba(11, 34, 74, 0.34);
+  --sh-icon: 0 2px 6px rgba(0, 0, 0, 0.45);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* --- Fonts --- */
+  --font-ui: 'Segoe UI', 'Selawik', Tahoma, Geneva, Verdana, system-ui, 'Segoe UI Emoji',
+    'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+  --font-mono: 'Cascadia Code', 'Consolas', 'Courier New', ui-monospace, monospace;
+
+  --taskbar-h: 44px;
+  --z-desktop: 1;
+  --z-gadget: 50;
+  --z-window: 100;
+  --z-taskbar: 9000;
+  --z-start: 9500;
+  --z-overlay: 10000;
+}
+
+/* Night / dusk session — only the sky & hills change so window content and the
+   Start menu stay perfectly readable (like a classic OS at night). */
+:root[data-session='night'] {
+  --sky-top: #071634;
+  --sky-mid: #14315f;
+  --sky-low: #2d5285;
+  --hill-far: #2f5a30;
+  --hill-mid: #244a26;
+  --hill-near: #1b3a1d;
+  --hill-shadow: #122811;
+}
