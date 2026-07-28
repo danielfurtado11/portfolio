@@ -341,6 +341,7 @@
   margin: 22px 0 24px;
   max-width: 68ch;
 }
+.proj-detail__text p + p { margin-top: 12px; }
 .proj-detail__actions { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 24px; }
 
 /* ============================================================

@@ -41,7 +41,11 @@ export function ProjectsApp() {
                 </div>
               </div>
 
-              <p className="proj-detail__text">{L(selected.description)}</p>
+              <div className="proj-detail__text">
+                {L(selected.description).split('\n\n').map((para, i) => (
+                  <p key={i}>{para}</p>
+                ))}
+              </div>
 
               <h3 className="doc__label">{t('techStack')}</h3>
               <div className="tags" style={{ marginTop: 0 }}>
