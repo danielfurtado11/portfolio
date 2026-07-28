@@ -11,12 +11,14 @@ import { useEffect, useSyncExternalStore } from 'react';
 export type ViewsState = {
   status: 'loading' | 'ready' | 'error';
   count: number | null;
+  /** True when this page load is what incremented the counter (i.e. a first-time visitor). */
+  counted: boolean;
 };
 
 const ENDPOINT = '/api/views';
 const STORAGE_KEY = 'danielos:visited:v1';
 
-let state: ViewsState = { status: 'loading', count: null };
+let state: ViewsState = { status: 'loading', count: null, counted: false };
 let started = false;
 const listeners = new Set<() => void>();
 
@@ -64,11 +66,11 @@ async function load() {
 
     setState(
       typeof data.views === 'number'
-        ? { status: 'ready', count: data.views }
-        : { status: 'error', count: null },
+        ? { status: 'ready', count: data.views, counted: !returning }
+        : { status: 'error', count: null, counted: false },
     );
   } catch {
-    setState({ status: 'error', count: null });
+    setState({ status: 'error', count: null, counted: false });
   }
 }
 

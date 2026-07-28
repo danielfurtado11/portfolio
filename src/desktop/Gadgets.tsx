@@ -32,14 +32,14 @@ export function Gadgets() {
         <div className="gadget__date">{date}</div>
       </motion.div>
 
-      <HitCounter />
-
       <motion.div className="gadget gadget--note" {...bob(0.8)}>
         📌 {L({
           pt: 'Dica: clica duas vezes nos ícones. Experimenta o Terminal!',
           en: 'Tip: double-click the icons. Try the Terminal!',
         })}
       </motion.div>
+
+      <HitCounter />
     </div>
   );
 }

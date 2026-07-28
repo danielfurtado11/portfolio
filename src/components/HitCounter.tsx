@@ -16,7 +16,7 @@ function useCountUp(target: number, instant: boolean): number {
       return;
     }
 
-    const duration = 1100;
+    const duration = 1400;
     const startedAt = performance.now();
     let frame = requestAnimationFrame(function tick(now: number) {
       const t = Math.min(1, (now - startedAt) / duration);
@@ -33,7 +33,7 @@ function useCountUp(target: number, instant: boolean): number {
 
 export function HitCounter() {
   const { L } = useI18n();
-  const { status, count } = useViews();
+  const { status, count, counted } = useViews();
   const reduce = useReducedMotion();
   const shown = useCountUp(count ?? 0, reduce);
 
@@ -41,25 +41,41 @@ export function HitCounter() {
   if (status !== 'ready' || count === null) return null;
 
   const digits = String(shown).padStart(DIGITS, '0').slice(-DIGITS).split('');
-  const bob = reduce
-    ? {}
-    : {
-        animate: { y: [0, -6, 0] },
-        transition: { duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1.6 },
-      };
 
   return (
-    <motion.div className="gadget gadget--hits" {...bob}>
-      <div className="gadget__title">{L({ pt: 'Visitantes', en: 'Visitors' })}</div>
-      <div className="hits__display" role="img" aria-label={`${count}`}>
+    <motion.div
+      className="gadget gadget--hits"
+      initial={reduce ? undefined : { opacity: 0, y: 10 }}
+      animate={reduce ? undefined : { opacity: 1, y: 0 }}
+      transition={{ duration: 0.45, delay: 0.2 }}
+    >
+      <div className="hits__head">
+        <span className="hits__led" />
+        {L({ pt: 'Visitantes', en: 'Visitors' })}
+      </div>
+
+      <div className="hits__display" role="img" aria-label={String(count)}>
         {digits.map((digit, i) => (
-          <span className="hits__digit" key={i}>
-            {digit}
+          <span className="hits__cell" key={i}>
+            {/* remounting on digit change gives each wheel its mechanical roll */}
+            <motion.span
+              className="hits__digit"
+              key={digit}
+              initial={reduce ? undefined : { y: '-100%' }}
+              animate={reduce ? undefined : { y: 0 }}
+              transition={{ duration: 0.18, ease: 'easeOut' }}
+            >
+              {digit}
+            </motion.span>
           </span>
         ))}
+        {!reduce && <span className="hits__sweep" />}
       </div>
+
       <div className="hits__caption">
-        {L({ pt: 'desde 2025', en: 'since 2025' })}
+        {counted
+          ? L({ pt: `és o visitante nº ${count}`, en: `you are visitor #${count}` })
+          : L({ pt: 'visitas ao Daniel OS', en: 'visits to Daniel OS' })}
       </div>
     </motion.div>
   );
